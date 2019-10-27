@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Photo Finisher</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+</head>
+<body>
+    <label for="upload">Upload Image</label>
+    <input type="file" id="upload">
+    <canvas id="imageCanvas"></canvas>
+
+
+    <div class="tools">
+
+    	<label for="brightnessSlider">Brightness (<span id="brightnessValue">0</span>)</label>
+        <input id="brightnessSlider" type="range" value="0" min="-100" max="100">
+        
+    </div>
+    
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>
