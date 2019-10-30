@@ -26,12 +26,17 @@ const handleImage = (e) => {
         img.src = event.target.result;
     }
     reader.readAsDataURL(e.target.files[0]);
+    console.log(originalData);
 }
 
 upload.addEventListener("change", handleImage, false);
 
+const originalData = context.getImageData(0, 0, canvas.width, canvas.height);
+console.log(originalData);
+
 const brightnessSlider = document.getElementById("brightnessSlider");
 const brightnessValue = document.getElementById("brightnessValue");
+const brightnessReset = document.getElementById("resetBrightness");
 
 const applyBrightness = (data, brightness) => {
   for (var i = 0; i < data.length; i += 4) {
@@ -42,6 +47,9 @@ const applyBrightness = (data, brightness) => {
 }
 
 brightnessSlider.addEventListener("change", (event) => {
+    console.log(originalData);
+    // context.putImageData(originalData, 0, 0);
+
     let imageData;
 
     brightnessValue.innerText = event.currentTarget.value;
@@ -50,14 +58,24 @@ brightnessSlider.addEventListener("change", (event) => {
     applyBrightness(imageData.data, parseInt(brightnessSlider.value, 10));
 
     context.putImageData(imageData, 0, 0);
+    
+    console.log(brightnessSlider.value)
+    console.log(imageData)
+    console.log("data change")
 
+})
+
+brightnessReset.addEventListener("click", (event) => {
+    brightnessSlider.value = 0;
+
+    context.putImageData(originalData, 0, 0);
+    console.log(brightnessSlider.value);
 })
 
 var link = document.createElement("a");
 link.innerHTML = "download image";
-link.addEventListener(
-  "click",
-  function(ev) {
+
+link.addEventListener("click", () => {
     link.href = canvas.toDataURL();
     link.download = "edited.jpeg";
   },
