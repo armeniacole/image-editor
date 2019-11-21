@@ -26,7 +26,6 @@ const handleImage = (e) => {
         img.src = event.target.result;
     }
     reader.readAsDataURL(e.target.files[0]);
-    console.log(originalData);
 }
 
 upload.addEventListener("change", handleImage, false);
@@ -58,7 +57,7 @@ brightnessSlider.addEventListener("change", (event) => {
     applyBrightness(imageData.data, parseInt(brightnessSlider.value, 10));
 
     context.putImageData(imageData, 0, 0);
-    
+
     console.log(brightnessSlider.value)
     console.log(imageData)
     console.log("data change")
@@ -67,6 +66,7 @@ brightnessSlider.addEventListener("change", (event) => {
 
 brightnessReset.addEventListener("click", (event) => {
     brightnessSlider.value = 0;
+    brightnessValue.innerText = event.currentTarget.value;
 
     context.putImageData(originalData, 0, 0);
     console.log(brightnessSlider.value);
